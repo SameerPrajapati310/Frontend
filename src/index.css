@@ -1,0 +1,164 @@
+/* --- Variables --- */
+:root {
+  --primary: #d62828; /* Deeper, more romantic red */
+  --secondary: #ffadad;
+  --glass-bg: rgba(255, 255, 255, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --text-color: #590d22;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  min-height: 100vh;
+  /* A deeper, more premium gradient background */
+  background: radial-gradient(circle at center, #ffccd5, #ffb3c1, #ff8fa3, #ff4d6d);
+  background-size: 200% 200%;
+  animation: gradientBG 10s ease infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Playfair Display", serif;
+  overflow: hidden;
+  position: relative;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* --- THE GLASS CARD (New) --- */
+/* This contains the text and buttons */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px); /* The frosted glass effect */
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  padding: 60px 40px;
+  border-radius: 30px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); /* Soft, expensive shadow */
+  text-align: center;
+  max-width: 90%;
+  width: auto;
+  z-index: 10;
+  transition: transform 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Headings */
+.title {
+  font-family: "Sacramento", cursive; /* New elegant font */
+  font-size: 4.5rem;
+  color: #a4161a;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: #590d22;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+/* Buttons Container */
+.buttons {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+button {
+  padding: 14px 40px;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+}
+
+/* YES Button */
+button.yes {
+  background: #a4161a;
+  color: white;
+  box-shadow: 0 4px 15px rgba(164, 22, 26, 0.3);
+}
+
+button.yes:hover {
+  transform: scale(1.05);
+  background: #800f2f;
+  box-shadow: 0 6px 20px rgba(164, 22, 26, 0.5);
+}
+
+/* NO Button */
+/* Update this specific block in your existing CSS */
+button.no {
+  background: white;
+  color: #a4161a;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  /* Make the transition faster (0.2s) so it feels energetic, not sluggish */
+  transition: top 0.2s ease, left 0.2s ease; 
+  /* Note: We removed 'transform' from transition since we are using top/left now */
+}
+
+/* Gallery (Success State) */
+.gallery {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.gallery img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 4px solid white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transform: rotate(-5deg);
+}
+
+.gallery img:nth-child(2) { transform: rotate(5deg); }
+.gallery img:nth-child(3) { transform: rotate(-3deg); }
+
+/* --- Cherry Blossom Animation (Kept as requested) --- */
+.petals-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.petal {
+  position: absolute;
+  top: -10%;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  border-radius: 150% 0 150% 0;
+  opacity: 0.8;
+  animation: fall linear infinite;
+  box-shadow: 0 0 5px rgba(255, 183, 178, 0.5);
+}
+
+@keyframes fall {
+  0% { top: -10%; transform: translateX(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.9; }
+  100% { top: 110%; transform: translateX(calc(-50px + 100px * var(--sway-dir))) rotate(360deg); opacity: 0; }
+}
