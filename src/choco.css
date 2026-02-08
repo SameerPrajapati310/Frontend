@@ -1,0 +1,202 @@
+/* ================= CHOCOLATE DAY QUIZ ================= */
+
+/* .day-module {
+  text-align: center;
+  padding: 24px;
+  animation: fadeIn 0.6s ease-in-out;
+  background: linear-gradient(
+    180deg,
+    rgba(90, 42, 39, 0.25),
+    rgba(30, 15, 15, 0.35)
+  );
+  border-radius: 20px;
+} */
+
+/* ================= TITLES & TEXT ================= */
+/* ================= MODERN PINK CHOCOLATE LOVE ================= */
+
+.subtitle.chocolate-love {
+  font-family: "Poppins", "Inter", system-ui, -apple-system, sans-serif;
+  font-size: 1.45rem;
+  font-weight: 400;
+  font-style: normal;
+
+  color: #ff6f91; /* soft romantic pink */
+
+  max-width: 520px;
+  margin: 6px auto 10px;
+  padding: 0;
+
+  line-height: 1.5;
+  text-align: center;
+
+  letter-spacing: 0.2px;
+  text-shadow: 0 2px 6px rgba(255, 111, 145, 0.25);
+}
+
+.day-module .title {
+  font-family: "Playfair Display", serif;
+  font-size: 3rem;
+  margin-bottom: 12px;
+  color: #ee4c4c;
+}
+
+.subtitle {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.8rem;
+  font-style: italic;
+  color: #6b1020;
+}
+
+.question-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 20px 0;
+}
+
+/* Score highlight */
+.day-module strong {
+  color: #e33762;
+} 
+
+/* ================= CHOCOLATE LOVE TEXT ================= */
+
+.chocolate-love {
+  color: #5a2a27; /* deep chocolate */
+  font-style: italic;
+  font-weight: 500;
+  max-width: 520px;
+  margin: 14px auto 24px;
+  line-height: 1.6;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+/* ================= QUESTION BUTTONS ================= */
+
+.choco-question-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin: 22px 0;
+  flex-wrap: wrap;
+} 
+
+.choco-question-buttons button {
+  font-style: italic;
+  min-width: 220px;
+  padding: 12px 18px;
+  font-size: 1rem;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #f16a60);
+  color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+}
+
+.choco-question-buttons button:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 10px 25px rgba(255, 105, 135, 0.4);
+} 
+/* ================= QUESTION FOOTER ================= */
+.day-module {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.question-step {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-top: 10px;
+}
+
+/* ================= GENERAL BUTTONS ================= */
+
+
+
+/* ================= LOTTIE PERFECT CENTER ================= */
+
+/* ================= LOTTIE PERFECT CENTER (NO GAP) ================= */
+
+.lottie-choco-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 100px auto 10px; /* reduce top gap */
+}
+
+.lottie-choco-wrapper> div {
+  width: 220px;
+  max-width: 90%;
+}
+
+/* Kill extra SVG spacing */
+.lottie-choco-wrappersvg {
+  display: block;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.choco-back-btn {
+  margin-top: 26px;
+
+  padding: 10px 26px;
+  border-radius: 999px;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #7a1f3d;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+/* Hover */
+.choco-back-btn:hover {
+  background: rgba(255, 255, 255, 0.45);
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Press */
+.choco-back-btn:active {
+  transform: translateY(0);
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+/* Optional fade-in (matches card animation) */
+.choco-back-btn {
+  animation: backBtnFade 0.6s ease forwards;
+}

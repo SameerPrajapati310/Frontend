@@ -7,6 +7,8 @@ import "./envelope.css"
 import "./side-bar.css"
 import proposeAnimation from "./assets/Proposal.json";
 import "./p.css"
+import choco from "./assets/Black Chocolate Ribbon Heart Valentine Qixi.json"
+import "./choco.css"
 
 type Page =
   | "HOME"
@@ -122,9 +124,9 @@ const Envelope = () => {
         <div className="letter">
           <div className="heart">❤️</div>
           <p>
-            Dear Dr Rashmi,
+            Dear Dr.Rashmi,
             <br /><br />
-            You are the 'center petal' of my life—everything else just revolves around you.
+            Tum ho toh mai Hu.
             <br />
             I love you so so much!!!💖
           </p>
@@ -229,13 +231,129 @@ const ProposeDay = ({ goBack }: { goBack: () => void }) => {
 };
 
 
-const ChocolateDay = ({ goBack }: { goBack: () => void }) => (
-  <>
-    <h1 className="title">🍫 Chocolate Day</h1>
-    <p className="subtitle">Coming Soon!!!</p>
-    <button onClick={goBack}>⬅ Back</button>
-  </>
-);
+const ChocolateDay = ({ goBack }: { goBack: () => void }) => {
+  const PASSING_SCORE = 20;
+
+  const questions = [
+    {
+      q: "Which radiographic feature is seen in odontogenic keratocyst?",
+      options: ["Multilocular radiolucency", "Ground glass appearance"],
+      correct: 0,
+    },
+    {
+      q: "Best imaging modality for TMJ soft tissue evaluation?",
+      options: ["MRI", "OPG"],
+      correct: 0,
+    },
+    {
+      q: "Sunburst appearance is classically seen in?",
+      options: ["Osteosarcoma", "Ameloblastoma"],
+      correct: 0,
+    },
+    {
+      q: "Which lesion shows cotton wool appearance?",
+      options: ["Paget’s disease", "Fibrous dysplasia"],
+      correct: 0,
+    },
+    {
+      q: "Radiolucent lesion with scalloped margins between roots is?",
+      options: ["Traumatic bone cyst", "Radicular cyst"],
+      correct: 0,
+    },
+  ];
+
+  const [index, setIndex] = useState(0);
+  const [score, setScore] = useState(0);
+  const [completed, setCompleted] = useState(false);
+
+  const handleAnswer = (selected: number) => {
+    const isCorrect = selected === questions[index].correct;
+    setScore((prev) => prev + (isCorrect ? 4 : -3));
+
+    if (index < questions.length - 1) {
+      setIndex(index + 1);
+    } else {
+      setCompleted(true);
+    }
+  };
+
+  const restartTest = () => {
+    setIndex(0);
+    setScore(0);
+    setCompleted(false);
+  };
+
+  return (
+    <div className="day-module">
+      <h1 className="title">🍫 Suprise Radio Test!!!</h1>
+  
+      {!completed ? (
+        <>
+          <p className="subtitle">
+            Score: <strong>{score}</strong>
+          </p>
+  
+          <p className="subtitle question-text">
+            Q{index + 1}. {questions[index].q}
+          </p>
+  
+          <div className="choco-question-buttons">
+            {questions[index].options.map((opt, i) => (
+              <button key={i} onClick={() => handleAnswer(i)}>
+                {opt}
+              </button>
+            ))}
+          </div>
+  
+          <p className="question-step">
+            Question {index + 1} of {questions.length}
+          </p>
+        </>
+      ) : score >= PASSING_SCORE ? (
+        <>
+          <p className="subtitle">
+            🎉 Score: <strong>{score}</strong>
+            <br />
+            You passed! Chocolate unlocked 🍫💖
+          </p>
+  
+          {/* 💝 Romantic Chocolaty Message (PASS ONLY) */}
+          <p className="subtitle chocolate-love">
+            Like chocolate melts slowly and sweetly,  
+            my love for you melts into every moment, Dr Rashmi 🍫💖  
+            This chocolate is sweet… but you’re sweeter ❤️
+          </p>
+  
+          <div className="lottie-choco-wrapper">
+            <Lottie animationData={choco} autoplay loop={false} />
+          </div>
+        </>
+      ) : (
+        <>
+          <p className="subtitle">
+            ❌ Score: <strong>{score}</strong>
+            <br />
+            Passing score is {PASSING_SCORE}
+          </p>
+  
+          {/* 💌 Romantic Retry Message (FAIL ONLY) */}
+          <p className="subtitle chocolate-love">
+            Don’t worry love… retry again 💕  
+            Even chocolates take time to melt perfectly 😌
+          </p>
+  
+          <button onClick={restartTest}>🔁 Retry Test</button>
+        </>
+      )}
+  
+      <button className="choco-back-btn" onClick={goBack}>
+        ⬅ Back
+      </button>
+    </div>
+  );
+  
+};
+
 
 const TeddyDay = ({ goBack }: { goBack: () => void }) => (
   <>
