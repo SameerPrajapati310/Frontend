@@ -1,0 +1,69 @@
+.valentine-sidebar {
+    position: relative;   /* ❗ important */
+    height: auto;
+  
+    padding: 22px 18px;
+  
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(14px);
+  
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
+  }
+  
+  
+  .valentine-sidebar {
+    overflow-x: hidden; /* ⬅ prevents horizontal scrollbar */
+  }
+  
+  /* Title */
+  .valentine-sidebar h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.3rem;
+    color: #7a1120;
+  
+    margin-bottom: 12px; /* ⬅ reduced */
+    text-align: center;
+  }
+  
+  /* List container */
+  .valentine-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* ⬅ controls spacing cleanly */
+  
+    overflow-y: auto;
+  }
+  
+  /* Items */
+  .valentine-sidebar li {
+    font-size: 0.98rem;
+    padding: 9px 12px;
+  
+    border-radius: 14px;
+    color: #5a0f1a;
+  
+    background: rgba(255, 255, 255, 0.35);
+    transition: all 0.25s ease;
+  
+    cursor: pointer;
+  }
+  
+  /* Hover effect */
+  .valentine-sidebar li:hover {
+    background: rgba(255, 255, 255, 0.55);
+    transform: translateX(2px);
+  }
+  .valentine-sidebar ul::-webkit-scrollbar {
+    display: none; /* Chrome / Edge / Safari */
+  }
+  /* Hide sidebar on mobile */
+  @media (max-width: 900px) {
+    .valentine-sidebar {
+      display: none;
+    }
+  }

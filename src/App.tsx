@@ -3,6 +3,10 @@ import "./App.css";
 import Lottie from "lottie-react";
 import roseAnimation from "./assets/rose.json";
 import coupleDinnerAnimation from "./assets/couple-dinner.json";
+import "./envelope.css"
+import "./side-bar.css"
+import proposeAnimation from "./assets/Proposal.json";
+import "./p.css"
 
 type Page =
   | "HOME"
@@ -120,9 +124,9 @@ const Envelope = () => {
           <p>
             Dear Dr Rashmi,
             <br /><br />
-            Every smile of yours makes my world brighter.
+            You are the 'center petal' of my life—everything else just revolves around you.
             <br />
-            You are deeply special to me.💖
+            I love you so so much!!!💖
           </p>
         </div>
       </div>
@@ -159,13 +163,71 @@ const RoseDay = ({ goBack }: { goBack: () => void }) => (
 
 /* ================= PLACEHOLDERS ================= */
 
-const ProposeDay = ({ goBack }: { goBack: () => void }) => (
-  <>
-    <h1 className="title">💍 Propose Day</h1>
-    <p className="subtitle">Coming Soon!!!</p>
-    <button onClick={goBack}>⬅ Back</button>
-  </>
-);
+const ProposeDay = ({ goBack }: { goBack: () => void }) => {
+  const questions = [
+    "Do you believe some connections are destined? 💫",
+    "Do I make you smile even on hard days? 😊",
+    "Can I be the one who stands by you forever? 💖"
+  ];
+
+  const [step, setStep] = useState(0);
+  const [completed, setCompleted] = useState(false);
+
+  const handleAnswer = () => {
+    if (step < questions.length - 1) {
+      setStep(step + 1);
+    } else {
+      setCompleted(true);
+    }
+  };
+
+  return (
+    <div className="day-module">
+      <div className="day-card">
+        {!completed ? (
+          <>
+            <h1 className="title">💍 Propose Day</h1>
+
+            <p className="subtitle question-text">
+              {questions[step]}
+            </p>
+
+            <div className="question-buttons">
+              <button onClick={handleAnswer}>Yes</button>
+              <button onClick={handleAnswer}>No</button>
+            </div>
+
+            <p className="question-step">
+              Question {step + 1} of {questions.length}
+            </p>
+          </>
+        ) : (
+          <>
+            <h1 className="title">💍 Propose Day</h1>
+
+          <div className="lottie-propose-wrapper">
+          <Lottie
+            animationData={proposeAnimation}
+            autoplay
+            loop
+          />
+          </div>
+
+
+            <p className="subtitle">
+              Will you make my forever a little more beautiful? 💕
+            </p>
+          </>
+        )}
+
+        <button className="back-btn" onClick={goBack}>
+          ⬅ Back
+        </button>
+      </div>
+    </div>
+  );
+};
+
 
 const ChocolateDay = ({ goBack }: { goBack: () => void }) => (
   <>

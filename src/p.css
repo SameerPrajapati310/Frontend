@@ -1,0 +1,108 @@
+/* ================= PROPOSE QUESTIONS ================= */
+
+.question-text {
+  font-family: "Playfair Display", serif;
+  font-size: 1.4rem;
+  margin: 24px 0;
+}
+
+.question-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.question-buttons button {
+  padding: 12px 26px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+
+  background: rgba(255,255,255,0.35);
+  backdrop-filter: blur(10px);
+
+  font-weight: 600;
+  color: #7a1120;
+  transition: 0.25s;
+}
+
+.question-buttons button:hover {
+  background: rgba(255,255,255,0.55);
+  transform: translateY(-2px);
+}
+
+.question-step {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+/* Propose animation */
+.lottie-propose-wrapper {
+  width: 520px;
+  height: 520px;
+  margin: 0 auto 20px;
+}
+/* ===============================
+   BACK BUTTON (ANIMATED)
+================================ */
+.back-btn {
+  margin-top: 26px;
+
+  padding: 10px 26px;
+  border-radius: 999px;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #7a1f3d;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+/* Hover */
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.45);
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Press */
+.back-btn:active {
+  transform: translateY(0);
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+/* Optional fade-in (matches card animation) */
+.back-btn {
+  animation: backBtnFade 0.6s ease forwards;
+}
+
+@keyframes backBtnFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,91 @@
+
+/* 🧊 Glass card content */
+.day-module {
+    width: 100%;
+    max-width: 520px;
+  
+    margin: 0 auto;
+    padding: 36px;
+  
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+  
+    box-shadow:
+      0 25px 45px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  
+    text-align: center;
+  }
+  
+
+/* Subtle entrance animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🌹 Rose container with glass glow */
+.lottie-rose-wrapper > div,
+.lottie-rose-wrapper svg {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.lottie-rose-wrapper {
+    position: relative;
+    width: 320px;
+    height: 320px;
+  
+    margin: 0 auto 24px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .lottie-rose-wrapper::before {
+    content: "";
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(
+      circle,
+      rgba(255, 120, 150, 0.45),
+      rgba(255, 120, 150, 0.15),
+      transparent
+    );
+    filter: blur(35px);
+    z-index: -1;
+  }
+  
+.back-btn {
+  margin-top: 22px;
+
+  padding: 10px 22px;
+  border-radius: 999px;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #7a1f3d;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+}

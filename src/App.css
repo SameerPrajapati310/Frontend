@@ -1,114 +1,103 @@
-/* =========================
-   GOOGLE FONTS REQUIRED
-   Playfair Display + Poppins
-========================= */
-
 :root {
   --primary: #a4161a;
   --glass-bg: rgba(255, 255, 255, 0.28);
   --glass-border: rgba(255, 255, 255, 0.55);
-  --dark-overlay: rgba(0, 0, 0, 0.35);
 }
 
-/* Reset */
+/* ================= RESET ================= */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Page */
+/* ================= PAGE LAYOUT ================= */
 .page {
   min-height: 100vh;
-  background: radial-gradient(circle at top, #ffccd5, #ff8fa3, #ff4d6d);
-  background-size: 200% 200%;
-  animation: gradientBG 10s ease infinite;
-
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 260px 1fr 320px;
   align-items: center;
-  font-family: "Poppins", sans-serif;
-  overflow: hidden;
-  position: relative;
+  gap: 24px;
+
+  padding: 20px;
+  background: radial-gradient(circle at center, #ffccd5, #ff8fa3, #ff4d6d);
+  overflow-x: hidden;
 }
 
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-/* Landing page wrapper */
-.landing-container {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* ================= GLASS CARD ================= */
+.glass-card {
+  max-width: 820px;
+  width: 100%;
+  margin: 0 auto;
 
-/* Glass card */
-.landing-glass {
-  background: rgba(255, 255, 255, 0.28);
+  padding: 40px 32px;
+  border-radius: 28px;
+
+  background: var(--glass-bg);
   backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
 
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  border-radius: 30px;
-
-  padding: 50px 60px;
-  text-align: center;
-
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.2);
 }
 
-/* Title */
-.landing-text {
-  position: relative;
-  z-index: 15;
-
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-.landing-title {
-  font-family: "Playfair Display", serif;
-  font-size: 3rem;
-  font-weight: 600;
-  color: #7a1120;
-  margin-bottom: 6px;
-}
-
-.landing-subtitle {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 2rem;
-  font-weight: 500;
-  font-style: italic;
-
-  color: #6b1020;
-  letter-spacing: 0.4px;
-}
-
+/* ================= LANDING CENTER ================= */
 .landing-container {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
 }
 
 .landing-center {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 22px;
+  gap: 24px;
   text-align: center;
 }
-/* =========================
-   PETALS
-========================= */
+
+/* ================= TEXT ================= */
+.landing-title {
+  font-family: "Playfair Display", serif;
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: #7a1120;
+}
+
+.landing-subtitle {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.8rem;
+  font-style: italic;
+  color: #6b1020;
+}
+
+/* ================= COUPLE ANIMATION ================= */
+.landing-glass {
+  padding: 40px;
+  border-radius: 26px;
+
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.lottie-wrapper {
+  width: 360px;
+  height: 360px;
+  margin: 0 auto;
+}
+
+/* ================= ENVELOPE ================= */
+.envelope-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ================= PETALS ================= */
 .petals-container {
-  position: absolute;
+  position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
 }
 
 .petal {
@@ -132,663 +121,44 @@
   }
 }
 
-/* =========================
-   MOBILE TUNING
-========================= */
-@media (max-width: 600px) {
-  .title {
-    font-size: 2.6rem;
+/* ================= MOBILE LAYOUT ================= */
+@media (max-width: 768px) {
+  .page {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    gap: 16px;
+    padding: 14px;
   }
 
-  .hero-text h1 {
+  /* Row 1 */
+  .valentine-sidebar {
+    grid-row: 1;
+  }
+
+  /* Row 2 */
+  .landing-title {
+    grid-row: 2;
     font-size: 2.2rem;
   }
 
-  .buttons {
-    gap: 18px;
-  }
-}
-.envelope-section {
-  position: fixed;
-  right: 80px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 50;
-}
-
-/* Hide on mobile */
-@media (max-width: 900px) {
+  /* Row 3 */
   .envelope-section {
-    display: none;
+    grid-row: 3;
   }
-}
 
-.envelope {
-  position: relative;
-  width: 340px;
-  height: 220px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, #fff0f4, #ffdce6);
-  box-shadow: 0 22px 50px rgba(0,0,0,0.18);
-  perspective: 1000px;
-  overflow: visible;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-/* --------------------
-   POCKET (BACK)
-   This masks the lower part of the letter.
-   -------------------- */
-.envelope-pocket {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 124px; /* controls how much of the letter is hidden initially */
-  background: linear-gradient(180deg, #ffdbe6, #ffc4da);
-  border-radius: 0 0 18px 18px;
-  z-index: 1; /* back-most layer (but still above the envelope background) */
-  box-shadow: inset 0 6px 14px rgba(0,0,0,0.06);
-}
-
-/* --------------------
-   LETTER (MIDDLE -> becomes top)
-   Starts hidden (lowered). On open it moves up.
-   We control z-index via the "raised" class (applied via JS after flap opens).
-   -------------------- */
-.letter {
-  position: absolute;
-  left: 50%;
-  bottom: 12px;           /* aligned to pocket bottom */
-  width: 90%;
-  height: 240px;
-  transform: translateX(-50%) translateY(120px); /* lowered (hidden) */
-  opacity: 0;
-
-  background: rgba(255,255,255,0.98);
-  border-radius: 14px;
-  padding: 20px;
-  box-shadow: 0 16px 40px rgba(0,0,0,0.22);
-  text-align: center;
-  color: #6f1220;
-  transition:
-    transform 0.85s cubic-bezier(0.22,1,0.36,1),
-    opacity 0.45s ease;
-  z-index: 2; /* below flap by default */
-  pointer-events: none; /* decorative */
-}
-
-.envelope.open .letter {
-  /* letter moves up when envelope is "open" — but z-index still lower until 'raised' */
-  transform: translateX(-50%) translateY(-40px);
-  opacity: 1;
-}
-
-/* When "raised" is applied, push the letter above the flap */
-.envelope.raised .letter {
-  z-index: 6; /* above flap */
-  box-shadow: 0 30px 60px rgba(0,0,0,0.32);
-}
-
-/* --------------------
-   FLAP (FRONT)
-   Rotates open. Initially sits above letter.
-   -------------------- */
-.envelope-flap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  background: linear-gradient(135deg, #ff758f, #e2333e);
-  clip-path: polygon(0 0, 50% 58%, 100% 0);
-  transform-origin: top center;
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-
-  transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
-  z-index: 4; /* front layer by default (above letter's z-index:2) */
-}
-
-/* Flap flipped back (opened) */
-.envelope.open .envelope-flap {
-  transform: rotateX(180deg);
-}
-
-/* When raised state active, slightly reduce flap z-index so letter sits on top */
-.envelope.raised .envelope-flap {
-  z-index: 3;
-}
-
-/* --------------------
-   HEART + text
-   -------------------- */
-.heart {
-  font-size: 2.1rem;
-  margin-bottom: 8px;
-  animation: pulse 1.6s ease-in-out infinite;
-}
-
-.letter p {
-  margin: 0;
-  line-height: 1.45;
-  font-family: "Playfair Display", serif;
-  font-size: 0.98rem;
-  color: #6f1220;
-}
-
-/* subtle pulse */
-@keyframes pulse {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.18); }
-}
-
-.envelope-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 24px;
-}
-
-/* 💎 Glass-style Open Button */
-.envelope-buttons button {
-  margin:-7px;
-  padding: 18px 34px;
-  border-radius: 26px;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-
-  background: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-
-  color: #7a1120;
-  font-weight: 700;
-  font-size: 1.05rem;
-  letter-spacing: 0.3px;
-
-  box-shadow:
-    0 12px 28px rgba(0, 0, 0, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-
-  cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background 0.2s ease;
-}
-
-/* ✨ Hover */
-.envelope-buttons button:hover {
-  transform: translateY(-3px) scale(1.04);
-  background: rgba(255, 255, 255, 0.55);
-  box-shadow:
-    0 18px 40px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-}
-
-/* 💖 Click */
-.envelope-buttons button:active {
-  transform: translateY(0) scale(0.98);
-  box-shadow:
-    0 8px 18px rgba(0, 0, 0, 0.2);
-}
-
-
-
-/* responsive */
-@media (max-width: 420px) {
-  .envelope { width: 92%; height: 190px; }
-  .letter { height: 210px; }
-}
-
-
-
-
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.25); }
-}
-
-.envelope-buttons button:hover {
-  background: rgba(255,255,255,0.6);
-  transform: translateY(-2px);
-}
-
-
-
-/* Subtitle
-.landing-subtitle {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1.25rem;
-  font-weight: 500;
-  font-style: italic;
-
-  color: #6b1020;
-  letter-spacing: 0.4px;
-  line-height: 1.6;
-
-  margin-top: 14px;
-} */
-
-
-/* Responsive */
-@media (max-width: 768px) {
+  /* Row 4 */
   .landing-glass {
-    padding: 35px 25px;
+    grid-row: 4;
+  }
+
+  /* Row 5 */
+  .landing-subtitle {
+    grid-row: 5;
+    font-size: 1.5rem;
   }
 
   .lottie-wrapper {
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
   }
-
-  .landing-title {
-    font-size: 2.2rem;
-  }
-}
-
-.valentine-sidebar {
-  position: fixed;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%); /* ⬅ vertical center */
-
-  width: 280px; /* your increased width */
-  max-height: 90vh; /* prevents overflow on small screens */
-
-  padding: 22px 18px;
-
-  display: flex;
-  flex-direction: column;
-
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  border-radius: 24px;
-
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
-  z-index: 20;
-
-  overflow-x: hidden; /* ⬅ prevents horizontal scrollbar */
-}
-
-.valentine-sidebar {
-  overflow-x: hidden; /* ⬅ prevents horizontal scrollbar */
-}
-
-/* Title */
-.valentine-sidebar h3 {
-  font-family: "Playfair Display", serif;
-  font-size: 1.3rem;
-  color: #7a1120;
-
-  margin-bottom: 12px; /* ⬅ reduced */
-  text-align: center;
-}
-
-/* List container */
-.valentine-sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-
-  display: flex;
-  flex-direction: column;
-  gap: 6px; /* ⬅ controls spacing cleanly */
-
-  overflow-y: auto;
-}
-
-/* Items */
-.valentine-sidebar li {
-  font-size: 0.98rem;
-  padding: 9px 12px;
-
-  border-radius: 14px;
-  color: #5a0f1a;
-
-  background: rgba(255, 255, 255, 0.35);
-  transition: all 0.25s ease;
-
-  cursor: pointer;
-}
-
-/* Hover effect */
-.valentine-sidebar li:hover {
-  background: rgba(255, 255, 255, 0.55);
-  transform: translateX(2px);
-}
-.valentine-sidebar ul::-webkit-scrollbar {
-  display: none; /* Chrome / Edge / Safari */
-}
-/* Hide sidebar on mobile */
-@media (max-width: 900px) {
-  .valentine-sidebar {
-    display: none;
-  }
-}
-
-
-/* Hero */
-.hero {
-  width: 100%;
-  height: 260px;
-  background: url("./assets/valentine-bg.png") center / cover no-repeat;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--dark-overlay);
-}
-
-.hero-text {
-  position: relative;
-  color: white;
-  text-align: center;
-}
-
-.hero-text span {
-  letter-spacing: 6px;
-  font-size: 0.85rem;
-}
-
-.hero-text h1 {
-  font-family: "Playfair Display", serif;
-  font-size: 2.9rem;
-}
-
-.heart {
-  font-size: 1.6rem;
-}
-
-/* Glass Card */
-.glass-card {
-  margin-top: -50px;
-  padding: 55px 45px;
-  border-radius: 30px;
-  background: var(--glass-bg);
-  backdrop-filter: blur(14px);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 12px 45px rgba(0, 0, 0, 0.18);
-  text-align: center;
-  z-index: 10;
-}
-
-/* Titles */
-.top-title {
-  font-family: "Playfair Display", serif;
-  font-size: 1.7rem;
-  color: #7a1120;
-}
-
-.title {
-  font-family: "Playfair Display", serif;
-  font-size: 3.4rem;
-  color: var(--primary);
-}
-
-.subtitle {
-  font-size: 1.35rem;
-  color: #5a0f1a;
-}
-
-/* Hearts Row */
-.hearts-row {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 12px 0;
-}
-
-.hearts-row span {
-  font-size: 1.4rem;
-  animation: pulse 1.6s infinite;
-}
-
-.hearts-row span:nth-child(2) {
-  animation-delay: 0.3s;
-}
-
-.hearts-row span:nth-child(3) {
-  animation-delay: 0.6s;
-}
-
-/* Buttons */
-.buttons {
-  display: flex;
-  gap: 28px;
-  justify-content: center;
-  margin-top: 30px;
-}
-
-button {
-  padding: 14px 42px;
-  font-size: 1.1rem;
-  border-radius: 50px;
-  cursor: pointer;
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-
-  background: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.18);
-  transition: 0.25s ease;
-}
-
-button.yes {
-  background: rgba(164, 22, 26, 0.45);
-  color: white;
-}
-
-button.yes:hover {
-  transform: scale(1.08);
-}
-
-.no-btn-area {
-  position: relative;
-}
-
-button.no {
-  background: rgba(255, 255, 255, 0.55);
-  color: var(--primary);
-  transition: transform 0.15s ease;
-  will-change: transform;
-}
-
-/* Gallery */
-.gallery {
-  display: flex;
-  gap: 18px;
-  margin-top: 30px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.gallery img {
-  width: 145px;
-  height: 145px;
-  object-fit: cover;
-  border-radius: 16px;
-  border: 4px solid white;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3);
-}
-
-
-/* =========================
-   DAY MODULE BASE
-========================= */
-.day-module {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-
-  /* Reserve enough space */
-  min-height: 420px;
-  padding-top: 20px;
-
-  animation: fadeUp 0.8s ease;
-}
-
-
-
-/* =========================
-   DAY MODULE
-========================= */
-.day-module {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-
-  min-height: 420px;
-  padding-top: 20px;
-
-  animation: fadeUp 0.8s ease;
-}
-
-/* =========================
-   ROSE CONTAINER
-========================= */
-.rose-animation {
-  position: relative;
-  width: 150px;
-  height: 260px;
-
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-
-  margin: 0 auto 10px;
-  z-index: 5;
-
-  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.15));
-}
-
-/* =========================
-   STEM
-========================= */
-.stem {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 4px;
-  height: 0;
-
-  background: linear-gradient(to top, #1b4332, #40916c);
-  border-radius: 4px;
-
-  transform: translateX(-50%);
-  transform-origin: bottom center;
-  z-index: 2;
-
-  animation:
-    growStem 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-    sway 3s ease-in-out infinite 1.5s;
-}
-
-/* 🧊 Glass card */
-.day-module {
-  position: relative;
-
-  width: 100%;
-  max-width: 520px;
-  padding: 36px 28px;
-
-  border-radius: 20px;
-
-  background: rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow:
-    0 25px 45px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
-
-  text-align: center;
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-/* Subtle entrance animation */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* 🌹 Rose container with glass glow */
-.lottie-rose-wrapper {
-  position: relative;
-
-  width: 320px;
-  height: 320px;
-
-  margin: 0 auto 24px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  pointer-events: none; /* decorative only */
-}
-
-/* Soft romantic glow behind rose */
-.lottie-rose-wrapper::before {
-  content: "";
-  position: absolute;
-
-  width: 260px;
-  height: 260px;
-
-  background: radial-gradient(
-    circle,
-    rgba(255, 120, 150, 0.45),
-    rgba(255, 120, 150, 0.15),
-    transparent
-  );
-
-  filter: blur(35px);
-  z-index: -1;
-}
-
-.back-btn {
-  margin-top: 22px;
-
-  padding: 10px 22px;
-  border-radius: 999px;
-
-  font-size: 0.95rem;
-  font-weight: 500;
-
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(10px);
-
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  color: #7a1f3d;
-
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.back-btn:hover {
-  background: rgba(255, 255, 255, 0.4);
-  transform: translateY(-1px);
 }
