@@ -1,0 +1,378 @@
+/* ================= TEDDY QUIZ TEXT ================= */
+.teddy-day-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+    margin: 22px auto;
+    min-height: 400px;
+    width: 100%;
+    max-width: 400px;
+  }
+  /* ================= RESULT SECTION (COMMON) ================= */
+
+  .teddy-result-section {
+    text-align: center;
+    padding: 24px 18px;
+    animation: teddyResultFade 0.6s ease forwards;
+  }
+  
+  .teddy-result-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.8rem;
+    margin-bottom: 14px;
+    color: #7a1120;
+  }
+  
+  /* ================= FAIL MESSAGE (RETRY BABY) ================= */
+  
+  .teddy-result-section .teddy-romantic-message {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #7a1f3d;
+    margin-bottom: 22px;
+  }
+  
+  /* ================= RETRY BUTTON ================= */
+  
+  .teddy-skip-next-btn {
+    padding: 10px 28px;
+    border-radius: 999px;
+  
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+  
+    background: rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    color: #7a1f3d;
+  
+    cursor: pointer;
+  
+    box-shadow:
+      0 6px 16px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      background 0.25s ease;
+  }
+  
+  .teddy-skip-next-btn:hover {
+    background: rgba(255, 255, 255, 0.45);
+    transform: translateY(-2px);
+    box-shadow:
+      0 10px 22px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+  
+  .teddy-skip-next-btn:active {
+    transform: translateY(0);
+    box-shadow:
+      0 4px 10px rgba(0, 0, 0, 0.18);
+  }
+  
+  /* ================= OPTIONAL: FAIL STATE TONE ================= */
+  
+  .teddy-result-section.fail {
+    background: rgba(255, 182, 193, 0.12);
+    border-radius: 18px;
+  }
+  
+  /* ================= RESULT FADE ANIMATION ================= */
+  
+  @keyframes teddyResultFade {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  
+.teddy-title{
+    font-family: "Playfair Display", serif;
+    font-size: 1.4rem;
+    margin: 24px 0;
+    color: #7a1120;
+    text-align: center;
+}
+.teddy-question {
+  font-family: "Playfair Display", serif;
+  font-size: 1.4rem;
+  margin: 24px 0;
+  color: #7a1120;
+  text-align: center;
+}
+
+/* ================= TEDDY OPTIONS ================= */
+
+.teddy-options {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.teddy-options button {
+  padding: 12px 26px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  font-weight: 600;
+  color: #7a1120;
+
+  transition: 0.25s;
+}
+
+.teddy-options button:hover {
+  background: rgba(255, 255, 255, 0.55);
+  transform: translateY(-2px);
+}
+
+/* ================= TEDDY SCORE / STEP ================= */
+
+.teddy-score {
+  font-size: 0.9rem;
+  opacity: 0.75;
+  text-align: center;
+}
+
+.teddy-step {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin-top: 10px;
+}
+
+/* ================= SKIP MESSAGE SCREEN ================= */
+
+.teddy-skip-screen {
+  text-align: center;
+  padding: 36px 20px;
+  animation: teddyFade 0.5s ease forwards;
+}
+
+.teddy-skip-message {
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+  margin-bottom: 26px;
+  color: #7a1120;
+}
+
+/* ================= SKIP NEXT BUTTON ================= */
+
+.teddy-skip-next-btn {
+  padding: 10px 28px;
+  border-radius: 999px;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #7a1f3d;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.teddy-skip-next-btn:hover {
+  background: rgba(255, 255, 255, 0.45);
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.teddy-skip-next-btn:active {
+  transform: translateY(0);
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+/* ================= RESULT SECTION ================= */
+
+.teddy-result-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.9rem;
+  margin-bottom: 18px;
+  color: #7a1120;
+  text-align: center;
+}
+
+.teddy-romantic-message {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  text-align: center;
+  margin-top: 18px;
+  color: #7a1f3d;
+}
+
+/* ================= BACK BUTTON (TEDDY ONLY) ================= */
+
+.teddy-back-btn {
+  margin-top: 26px;
+
+  padding: 10px 26px;
+  border-radius: 999px;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #7a1f3d;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+
+  animation: teddyBackFade 0.6s ease forwards;
+}
+
+.teddy-back-btn:hover {
+  background: rgba(255, 255, 255, 0.45);
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.teddy-back-btn:active {
+  transform: translateY(0);
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes teddyFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes teddyBackFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ================= TEDDY RESULT IMAGES ================= */
+
+/* ================= TEDDY RESULT IMAGE CARDS ================= */
+
+.teddy-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 26px;
+  margin: 26px 0 20px;
+  flex-wrap: wrap;
+}
+
+/* Card style instead of circle */
+.teddy-images img {
+  width: 140px;
+  height: 180px;
+
+  border-radius: 16px; /* 🔥 card shape */
+  object-fit: cover;
+
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.45);
+
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+
+  animation: teddyImgPop 0.55s ease forwards;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Hover lift like cards */
+.teddy-images img:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow:
+    0 18px 36px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+/* Stagger entrance */
+.teddy-images img:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.teddy-images img:nth-child(2) {
+  animation-delay: 0.18s;
+}
+.teddy-images img:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* ================= IMAGE POP ANIMATION ================= */
+
+@keyframes teddyImgPop {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+

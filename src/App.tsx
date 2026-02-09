@@ -9,6 +9,12 @@ import proposeAnimation from "./assets/Proposal.json";
 import "./p.css"
 import choco from "./assets/Black Chocolate Ribbon Heart Valentine Qixi.json"
 import "./choco.css"
+import { useEffect } from "react";
+import teddyAnimation from "./assets/Couple Bear Valentine.json";
+import "./teddy.css"
+import sameerImg from "./public/1.jpeg";
+import mufasaImg from "./public/2.jpeg";
+import jackImg from "./public/3.jpeg";
 
 type Page =
   | "HOME"
@@ -19,6 +25,12 @@ type Page =
   | "PROMISE"
   | "HUG"
   | "KISS";
+
+  type Stage =
+  | "ANIMATION"
+  | "QUIZ"
+  | "SKIP_MESSAGE"
+  | "RESULT";
 
 const App: React.FC = () => {
   const [page, setPage] = useState<Page>("HOME");
@@ -126,7 +138,7 @@ const Envelope = () => {
           <p>
             Dear Dr.Rashmi,
             <br /><br />
-            Tum ho toh mai Hu.
+            Kl khol kr dekha tha kya likha tha?
             <br />
             I love you so so much!!!💖
           </p>
@@ -355,13 +367,173 @@ const ChocolateDay = ({ goBack }: { goBack: () => void }) => {
 };
 
 
-const TeddyDay = ({ goBack }: { goBack: () => void }) => (
-  <>
-    <h1 className="title">🧸 Teddy Day</h1>
-    <p className="subtitle">Coming Soon!!!</p>
-    <button onClick={goBack}>⬅ Back</button>
-  </>
-);
+const TeddyDay = ({ goBack }: { goBack: () => void }) => {
+  const [stage, setStage] = useState<Stage>("ANIMATION");
+  const [qIndex, setQIndex] = useState(0);
+  const [score, setScore] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setStage("QUIZ");
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const questions = [
+    {
+      q: "What is the date of birth of Mufasa?",
+      options: ["08/02/2025", "09/02/2025"],
+      correct: 0,
+      points: 4,
+    },
+    {
+      q: "What is the date of birth of Rose?",
+      options: ["09/03/2019", "08/02/2020"],
+      skipMessage: "Rose ka Bday toh mujhe bhee nahi pta!!! 😅",
+    },
+    {
+      q: "Who is your favourite teddy bear?",
+      options: ["Sameer", "Mufasa", "Jack"],
+      correct: 0,
+      points: 4,
+    },
+  ];
+
+  const handleAnswer = (idx: number) => {
+    const current = questions[qIndex];
+
+    // Q2 → skip screen
+    if ("skipMessage" in current) {
+      setStage("SKIP_MESSAGE");
+      return;
+    }
+
+    // scoring questions
+    if (idx === current.correct) {
+      setScore((prev) => prev + current.points!);
+    }
+
+    if (qIndex < questions.length - 1) {
+      setQIndex(qIndex + 1);
+    } else {
+      setStage("RESULT");
+    }
+  };
+
+  const continueAfterSkip = () => {
+    setQIndex(2); // move to Q3
+    setStage("QUIZ");
+  };
+
+  const retryQuiz = () => {
+    setScore(0);
+    setQIndex(0);
+    setStage("QUIZ");
+  };
+
+  return (
+    <div className="teddy-day-container">
+      {/* 🧸 INTRO */}
+      {stage === "ANIMATION" && (
+        <div className="teddy-animation-section">
+          <h1 className="teddy-title">
+            Happy Teddy Day my Pokkkkieeeee!!!
+          </h1>
+
+          <Lottie animationData={teddyAnimation} autoplay loop />
+
+          <p className="teddy-animation-text">
+            A teddy hug is coming for you 🧸💖
+          </p>
+        </div>
+      )}
+
+      {/* 🧠 QUIZ */}
+      {stage === "QUIZ" && (
+        <div className="teddy-quiz-section">
+          <h1 className="teddy-title">🧸 Teddy Day Quiz</h1>
+
+          <p className="teddy-score">Score: {score}</p>
+
+          <p className="teddy-question">
+            Q{qIndex + 1}. {questions[qIndex].q}
+          </p>
+
+          <div className="teddy-options">
+            {questions[qIndex].options.map((opt, i) => (
+              <button key={i} onClick={() => handleAnswer(i)}>
+                {opt}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 😅 SKIP MESSAGE */}
+      {stage === "SKIP_MESSAGE" && (
+        <div className="teddy-skip-screen">
+          <p className="teddy-skip-message">
+            Rose ka Bday toh mujhe bhee nahi pta!!! 😅
+          </p>
+
+          <button
+            className="teddy-skip-next-btn"
+            onClick={continueAfterSkip}
+          >
+            Next ➡
+          </button>
+        </div>
+      )}
+
+      {/* 💖 SUCCESS RESULT */}
+      {stage === "RESULT" && score >= 8 && (
+        <div className="teddy-result-section">
+          <h1 className="teddy-result-title">💖 Teddy Day Surprise 💖</h1>
+
+          <div className="teddy-images">
+            <img src={sameerImg} alt="Sameer" />
+            <img src={mufasaImg} alt="Mufasa" />
+            <img src={jackImg} alt="Jack" />
+          </div>
+
+          <p className="teddy-romantic-message">
+            When you miss me, hug Mufasa…  
+            <br />
+            but remember, it’s just a practice hug  
+            <br />
+            for the real one coming soon 😉🧸❤️
+          </p>
+        </div>
+      )}
+
+      {/* 💔 FAIL RESULT */}
+      {stage === "RESULT" && score < 8 && (
+        <div className="teddy-result-section">
+          <h1 className="teddy-result-title">😌 Oops!</h1>
+
+          <p className="teddy-romantic-message">
+            Retry baby 💕  Teddy thoda naraz ho gaya hai…  
+            <br />
+            
+          </p>
+
+          <button
+            className="teddy-skip-next-btn"
+            onClick={retryQuiz}
+          >
+            🔁 Retry
+          </button>
+        </div>
+      )}
+
+      <button className="teddy-back-btn" onClick={goBack}>
+        ⬅ Back
+      </button>
+    </div>
+  );
+};
+
 
 const PromiseDay = ({ goBack }: { goBack: () => void }) => (
   <>
