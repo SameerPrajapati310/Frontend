@@ -15,7 +15,7 @@ import "./teddy.css"
 import sameerImg from "./public/1.jpeg";
 import mufasaImg from "./public/2.jpeg";
 import jackImg from "./public/3.jpeg";
-
+import "./promis.css"
 type Page =
   | "HOME"
   | "ROSE"
@@ -535,13 +535,101 @@ const TeddyDay = ({ goBack }: { goBack: () => void }) => {
 };
 
 
-const PromiseDay = ({ goBack }: { goBack: () => void }) => (
-  <>
-    <h1 className="title">🤝 Promise Day</h1>
-    <p className="subtitle">Coming Soon!!!</p>
-    <button onClick={goBack}>⬅ Back</button>
-  </>
-);
+const PromiseDay = ({ goBack }: { goBack: () => void }) => {
+  const promises = [
+    {
+      title: "Promise of Presence",
+      text:
+        "I promise to be present.\n" +
+        "Not perfect. Not always right.\n" +
+        "But always here."
+    },
+    {
+      title: "Promise of Effort",
+      text:
+        "I don’t promise an easy life.\n" +
+        "I promise to try, to learn,\n" +
+        "and to fix what breaks."
+    },
+    {
+      title: "Promise of Honesty",
+      text:
+        "I promise honesty,\n" +
+        "even when it’s uncomfortable.\n" +
+        "Because truth respects love."
+    },
+    {
+      title: "Promise of Growth",
+      text:
+        "I promise to grow with you.\n" +
+        "And when one of us slows down,\n" +
+        "the other will wait."
+    },
+    {
+      title: "Promise of Respect",
+      text:
+        "I promise to protect your dignity,\n" +
+        "even in anger.\n" +
+        "Especially then."
+    }
+  ];
+
+  const [index, setIndex] = useState(0);
+  const [completed, setCompleted] = useState(false);
+
+  const handleNext = () => {
+    if (index < promises.length - 1) {
+      setIndex(index + 1);
+    } else {
+      setCompleted(true);
+    }
+  };
+
+  return (
+    <div className="promise-day-container">
+      <h1 className="promise-title">🤝 Promise Day</h1>
+
+      {!completed ? (
+        <div className="promise-card">
+          <h2 className="promise-card-title">
+            {promises[index].title}
+          </h2>
+
+          <p className="promise-card-text">
+            {promises[index].text}
+          </p>
+
+          <p className="promise-step">
+            Promise {index + 1} of {promises.length}
+          </p>
+
+          <button
+            className="promise-next-btn"
+            onClick={handleNext}
+          >
+            Next ➡
+          </button>
+        </div>
+      ) : (
+        <div className="promise-final-card">
+          <p className="promise-final-text">
+            These are the promises I can keep.
+            <br /><br />
+            In return, I ask for just one thing…
+            <br /><br />
+            <strong>Stay.</strong>
+          </p>
+        </div>
+      )}
+
+      <button className="promise-back-btn" onClick={goBack}>
+        ⬅ Back
+      </button>
+    </div>
+  );
+};
+
+
 
 const HugDay = ({ goBack }: { goBack: () => void }) => (
   <>
