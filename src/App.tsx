@@ -139,7 +139,7 @@ const Envelope = () => {
           <p>
             Dear Dr.Rashmi,
             <br /><br />
-            Kl khol kr dekha tha kya likha tha?
+            All the Best!!!
             <br />
             I love you so so much!!!💖
           </p>
