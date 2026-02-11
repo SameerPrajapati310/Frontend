@@ -1,0 +1,251 @@
+/* ================= HUG DAY CONTAINER ================= */
+
+.hug-day-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 28px 22px;
+  text-align: center;
+  animation: hugFadeIn 0.6s ease forwards;
+}
+
+/* ================= TITLE ================= */
+
+.hug-title {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #7a1120;
+}
+
+/* ================= CARD ================= */
+
+.hug-card,
+.hug-final-card {
+  width: 100%;
+  max-width: 440px;
+
+  padding: 28px 26px;
+  margin-bottom: 20px;
+
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+  animation: hugCardPop 0.5s ease forwards;
+}
+
+/* ================= CARD TITLE ================= */
+
+.hug-card-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.45rem;
+  margin-bottom: 14px;
+  color: #7a1120;
+}
+
+/* ================= QUESTION ================= */
+
+.hug-question {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin-bottom: 18px;
+  color: #7a1f3d;
+  white-space: pre-line;
+}
+
+/* ================= OPTIONS ================= */
+
+.hug-options {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.hug-option-btn {
+  padding: 10px 24px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #7a1120;
+
+  transition: 0.25s;
+}
+
+.hug-option-btn:hover {
+  background: rgba(255, 255, 255, 0.55);
+  transform: translateY(-2px);
+}
+
+/* Selected option */
+.hug-option-btn.selected {
+  background: rgba(255, 182, 193, 0.55);
+  color: #7a1120;
+}
+
+/* ================= TASK ================= */
+
+.hug-task {
+  margin-top: 14px;
+  animation: hugTaskFade 0.4s ease forwards;
+}
+
+.hug-task-text {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #7a1f3d;
+  margin-bottom: 16px;
+  white-space: pre-line;
+}
+
+/* ================= NEXT BUTTON ================= */
+
+.hug-next-btn {
+  padding: 10px 28px;
+  border-radius: 999px;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+
+  background: rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #7a1f3d;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.hug-next-btn:hover {
+  background: rgba(255, 255, 255, 0.48);
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* ================= FINAL CARD ================= */
+
+.hug-final-text {
+  font-family: "Playfair Display", serif;
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: #7a1120;
+}
+
+/* ================= BACK BUTTON ================= */
+
+.hug-back-btn {
+  margin-top: 22px;
+
+  padding: 10px 26px;
+  border-radius: 999px;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #7a1f3d;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.hug-back-btn:hover {
+  background: rgba(255, 255, 255, 0.45);
+  transform: translateY(-2px);
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes hugFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hugCardPop {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes hugTaskFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 480px) {
+  .hug-title {
+    font-size: 1.7rem;
+  }
+
+  .hug-card,
+  .hug-final-card {
+    padding: 22px 18px;
+  }
+
+  .hug-card-title {
+    font-size: 1.3rem;
+  }
+
+  .hug-final-text {
+    font-size: 1.15rem;
+  }
+}

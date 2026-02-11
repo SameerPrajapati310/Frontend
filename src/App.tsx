@@ -16,6 +16,7 @@ import sameerImg from "./public/1.jpeg";
 import mufasaImg from "./public/2.jpeg";
 import jackImg from "./public/3.jpeg";
 import "./promis.css"
+import "./hug.css"
 type Page =
   | "HOME"
   | "ROSE"
@@ -631,13 +632,135 @@ const PromiseDay = ({ goBack }: { goBack: () => void }) => {
 
 
 
-const HugDay = ({ goBack }: { goBack: () => void }) => (
-  <>
-    <h1 className="title">🤗 Hug Day</h1>
-    <p className="subtitle">Coming Soon!!!</p>
-    <button onClick={goBack}>⬅ Back</button>
-  </>
-);
+
+type HugPrompt = {
+  title: string;
+  question: string;
+  options: [string, string];
+  task: string;
+};
+
+const HugDay = ({ goBack }: { goBack: () => void }) => {
+  const prompts: HugPrompt[] = [
+    {
+      title: "🍵 Warm vs Refreshing Hug",
+      question: "Which hug feels right right now?",
+      options: ["Warm Tea / Coffee ", "Cold Drink or chilled water"],
+      task:
+        "Take a photo of the drink you choose — steam rising, warm cup, or cold condensation.\n" +
+        "Capture the feeling of comfort or refreshment, not perfection."
+    },
+    {
+      title: "☁️ Soft vs Playful Hug",
+      question:
+        "Do you want a relaxed hug…\n" +
+        "or a light hug?",
+      options: ["Soft Toy or Teddy", "Blanket"],
+      task:
+        "Take a photo of you holding your soft toy, or holding your Blanket the way you do when you’re relaxed or happy.\n" +
+        "Let the photo reflect safety or joy."
+    },
+    {
+      title: "📱 Study lecture Hug vs Web Series Hug",
+      question: "What kind of vibe is your hug?",
+      options: ["Study (book)", "Web Series (tablet / phone)"],
+      task:
+        "Take a photo of your Study setup (books)\n" +
+        "or your tab/phone placed playfully like you’re enjoying something fun."
+    },
+    {
+      title: "🧦 Sleepy Hug vs Adventure Hug",
+      question:
+        "Do you want a cozy resting hug…\n" +
+        "or an energizing ‘let’s go’ hug?",
+      options: ["Pillow", "Footware"],
+      task:
+        "Take a photo of your pillow for warmth,\n" +
+        "or your footware ready for adventure."
+    },
+    {
+      title: "📸 The Real Hug Photo (You Included)",
+      question:
+        "Now for the final real hug moment — with you in the frame.",
+      options: ["Sending u with lots off love!💖", "Abhi Bhejti hun...🫂"],
+      task:
+        "Take a photo where you are in the frame.\n" +
+        "You can hug yourself, a teddy, or a cushion — just you expressing a hug."
+    }
+  ];
+
+  const [step, setStep] = useState(0);
+  const [selected, setSelected] = useState<number | null>(null);
+
+  const nextStep = () => {
+    setSelected(null);
+    setStep((prev) => prev + 1);
+  };
+
+  return (
+    <div className="hug-day-container">
+      <h1 className="hug-title">🤗 Hug Day</h1>
+
+      {step < prompts.length ? (
+        <div className="hug-card">
+          <h2 className="hug-card-title">
+            {prompts[step].title}
+          </h2>
+
+          <p className="hug-question">
+            {prompts[step].question}
+          </p>
+
+          <div className="hug-options">
+            {prompts[step].options.map((opt, i) => (
+              <button
+                key={i}
+                className={`hug-option-btn ${
+                  selected === i ? "selected" : ""
+                }`}
+                onClick={() => setSelected(i)}
+              >
+                {opt}
+              </button>
+            ))}
+          </div>
+
+          {selected !== null && (
+            <div className="hug-task">
+              <p className="hug-task-text">
+                📸 {prompts[step].task}
+              </p>
+
+              <button
+                className="hug-next-btn"
+                onClick={nextStep}
+              >
+                Next ➡
+              </button>
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="hug-final-card">
+          <p className="hug-final-text">
+            💖  
+            <br />
+            “I still remember our first hug.
+            It’s the kind of memory I’ll never forget.”
+            <br /><br />
+            Love you babes.
+          </p>
+        </div>
+      )}
+
+      <button className="hug-back-btn" onClick={goBack}>
+        ⬅ Back
+      </button>
+    </div>
+  );
+};
+
+
 
 const KissDay = ({ goBack }: { goBack: () => void }) => (
   <>
