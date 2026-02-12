@@ -1,0 +1,234 @@
+/* ================= KISS DAY CONTAINER ================= */
+
+.kiss-puzzle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 100%;
+  padding: 24px;
+  text-align: center;
+
+  animation: kissFadeIn 0.8s ease forwards;
+}
+
+@keyframes kissFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= TITLE & TEXT ================= */
+
+.kiss-title {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #7a1120;
+  margin-bottom: 10px;
+}
+
+.kiss-instructions {
+  font-size: 1rem;
+  color: #7a1f3d;
+  opacity: 0.85;
+  margin-bottom: 22px;
+  max-width: 320px;
+}
+
+/* ================= GRID ================= */
+
+.kiss-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 90px);
+  grid-template-rows: repeat(3, 90px);
+  gap: 8px;
+
+  margin: 0 auto 26px;
+}
+
+/* ================= TILE ================= */
+
+.kiss-tile {
+  width: 90px;
+  height: 90px;
+
+  background-size: 270px 270px;
+  background-repeat: no-repeat;
+
+  border-radius: 10px;
+  cursor: pointer;
+
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  border: 1px solid rgba(255, 255, 255, 0.45);
+
+  box-shadow:
+    0 6px 14px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+
+  animation: tilePop 0.4s ease forwards;
+}
+
+@keyframes tilePop {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Hover effect */
+.kiss-tile:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  filter: brightness(1.05);
+}
+
+/* Empty tile */
+.kiss-tile.empty {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  cursor: default;
+}
+
+/* ================= SOLVED SCREEN ================= */
+
+.kiss-solved-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: solvedReveal 0.9s ease forwards;
+}
+
+@keyframes solvedReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.kiss-message {
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #7a1120;
+  margin: 12px 0 18px;
+  max-width: 320px;
+}
+
+/* Final image */
+.kiss-full-image {
+  width: 260px;
+  height: auto;
+  border-radius: 16px;
+
+  border: 2px solid rgba(255, 255, 255, 0.5);
+
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+
+  animation: imageGlow 1.2s ease forwards;
+}
+
+@keyframes imageGlow {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ================= BACK BUTTON ================= */
+
+.kiss-back-btn {
+  margin-top: 28px;
+
+  padding: 10px 28px;
+  border-radius: 999px;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #7a1f3d;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.kiss-back-btn:hover {
+  background: rgba(255, 255, 255, 0.45);
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.kiss-back-btn:active {
+  transform: translateY(0);
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 480px) {
+  .kiss-grid-3 {
+    grid-template-columns: repeat(3, 78px);
+    grid-template-rows: repeat(3, 78px);
+  }
+
+  .kiss-tile {
+    width: 78px;
+    height: 78px;
+    background-size: 234px 234px;
+  }
+
+  .kiss-full-image {
+    width: 220px;
+  }
+}

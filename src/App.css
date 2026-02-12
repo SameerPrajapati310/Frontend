@@ -162,3 +162,19 @@
     height: 280px;
   }
 }
+/* ================= HOME PAGE BACKGROUND ================= */
+
+.home-page-bg {
+  min-height: 100vh;
+
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.29)
+    ),
+    url("/home-bg-p.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

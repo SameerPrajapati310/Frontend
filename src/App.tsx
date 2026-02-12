@@ -17,6 +17,9 @@ import mufasaImg from "./public/2.jpeg";
 import jackImg from "./public/3.jpeg";
 import "./promis.css"
 import "./hug.css"
+import "./kiss.css"
+
+
 type Page =
   | "HOME"
   | "ROSE"
@@ -49,7 +52,8 @@ const App: React.FC = () => {
   );
 
   return (
-    <div className="page">
+    <div className={`page ${page === "HOME" ? "home-page-bg" : ""}`}>
+
       {/* 🌹 Sidebar */}
       <div className="valentine-sidebar">
         <h3>Valentine Week</h3>
@@ -139,7 +143,7 @@ const Envelope = () => {
           <p>
             Dear Dr.Rashmi,
             <br /><br />
-            All the Best!!!
+             Kyaa khoob lgti ho badi sundar lgti ho!!!
             <br />
             I love you so so much!!!💖
           </p>
@@ -762,10 +766,113 @@ const HugDay = ({ goBack }: { goBack: () => void }) => {
 
 
 
-const KissDay = ({ goBack }: { goBack: () => void }) => (
-  <>
-    <h1 className="title">💋 Kiss Day</h1>
-    <p className="subtitle">If you wish we can start now 😘</p>
-    <button onClick={goBack}>⬅ Back</button>
-  </>
-);
+
+const SIZE = 3; // ✅ 3x3 grid
+const TOTAL = SIZE * SIZE;
+
+const shuffleArray = (arr: number[]) => {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+};
+
+const KissDay = ({ goBack }: { goBack: () => void }) => {
+  const [tiles, setTiles] = useState<number[]>([]);
+  const [empty, setEmpty] = useState<number>(TOTAL - 1);
+  const [solved, setSolved] = useState(false);
+
+  const initPuzzle = () => {
+    const numbers = Array.from({ length: TOTAL }, (_, i) => i);
+    const shuffled = shuffleArray(numbers);
+    setTiles(shuffled);
+    setEmpty(shuffled.indexOf(TOTAL - 1));
+    setSolved(false);
+  };
+
+  useEffect(() => {
+    initPuzzle();
+  }, []);
+
+  const canSwap = (index: number) => {
+    const row = Math.floor(index / SIZE);
+    const col = index % SIZE;
+    const emptyRow = Math.floor(empty / SIZE);
+    const emptyCol = empty % SIZE;
+
+    return (
+      (row === emptyRow && Math.abs(col - emptyCol) === 1) ||
+      (col === emptyCol && Math.abs(row - emptyRow) === 1)
+    );
+  };
+
+  const handleTileClick = (idx: number) => {
+    if (!canSwap(idx)) return;
+
+    const newTiles = [...tiles];
+    newTiles[empty] = newTiles[idx];
+    newTiles[idx] = TOTAL - 1;
+
+    setTiles(newTiles);
+    setEmpty(idx);
+
+    if (newTiles.every((v, i) => v === i)) {
+      setSolved(true);
+    }
+  };
+
+  return (
+    <div className="kiss-puzzle-container">
+      {!solved ? (
+        <>
+          <h1 className="kiss-title">💋 Kiss Day Puzzle</h1>
+          <p className="kiss-instructions">
+            Slide the pieces to reveal the kiss 💖
+          </p>
+
+          <div className="kiss-grid kiss-grid-3">
+            {tiles.map((tile, i) => (
+              <div
+                key={i}
+                className={`kiss-tile ${
+                  tile === TOTAL - 1 ? "empty" : ""
+                }`}
+                onClick={() => handleTileClick(i)}
+                style={{
+                  backgroundImage:
+                    tile !== TOTAL - 1
+                      ? `url("/kiss-puzzle.jpeg")`
+                      : "none",
+                  backgroundPosition: `${
+                    (tile % SIZE) * (100 / (SIZE - 1))
+                  }% ${Math.floor(tile / SIZE) * (100 / (SIZE - 1))}%`,
+                }}
+              />
+            ))}
+          </div>
+        </>
+      ) : (
+        <div className="kiss-solved-screen">
+          <h1 className="kiss-title">💋 You Solved It!</h1>
+          <p className="kiss-message">
+            Some puzzles end with answers…  
+            this one ends with a kiss 😘
+          </p>
+
+          <img
+            className="kiss-full-image"
+            src="/kiss-puzzle.jpeg" 
+            alt="Completed"
+          />
+        </div>
+      )}
+
+      <button className="kiss-back-btn" onClick={goBack}>
+        ⬅ Back
+      </button>
+    </div>
+  );
+};
+
+
