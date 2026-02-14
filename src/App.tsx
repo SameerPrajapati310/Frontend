@@ -32,12 +32,13 @@ type Page =
   | "HUG"
   | "KISS";
 
+  
   type Stage =
   | "ANIMATION"
   | "QUIZ"
   | "SKIP_MESSAGE"
   | "RESULT";
-
+  
 const App: React.FC = () => {
   const [page, setPage] = useState<Page>("HOME");
 
@@ -112,7 +113,10 @@ const App: React.FC = () => {
         {page === "HOME" && (
           <Home enterValentine={() => setPage("VALENTINE")} />
         )}
-        {page === "VALENTINE" && <ValentineMode />}
+            {page === "VALENTINE" && (
+      <ValentineMode goBack={() => setPage("HOME")} />
+    )}
+
         {page === "ROSE" && <RoseDay goBack={() => setPage("HOME")} />}
         {page === "PROPOSE" && <ProposeDay goBack={() => setPage("HOME")} />}
         {page === "CHOCOLATE" && <ChocolateDay goBack={() => setPage("HOME")} />}
@@ -168,21 +172,24 @@ const messages = [
 ];
 
 
-const ValentineMode: React.FC = () => {
+type ValentineModeProps = {
+  goBack: () => void;
+};
+
+const ValentineMode = ({ goBack }: ValentineModeProps) => {
   const [step, setStep] = useState(0);
   const [showQuestion, setShowQuestion] = useState(false);
   const [playVideo, setPlayVideo] = useState(false);
   const [finalMessage, setFinalMessage] = useState(false);
 
-  // 🔹 use transform-based position
-  const [noPos, setNoPos] = useState({ x: 0, y: 0 });
+  const [noPos, setNoPos] = useState({ top: 40, left: 60 });
 
   /* ================= MESSAGE SEQUENCE ================= */
   useEffect(() => {
     if (step < messages.length) {
       const timer = setTimeout(() => {
         setStep((prev) => prev + 1);
-      }, 6000);
+      }, 4000);
 
       return () => clearTimeout(timer);
     } else {
@@ -190,19 +197,26 @@ const ValentineMode: React.FC = () => {
     }
   }, [step]);
 
-  /* ================= MOVE NO BUTTON (SMOOTH) ================= */
+  /* ================= MOVE NO BUTTON ================= */
   const moveNo = () => {
-    const maxX = 220; // px
-    const maxY = 140; // px
+    const minLeft = 10;
+    const maxLeft = 80;
+    const minTop = 10;
+    const maxTop = 45;
 
     setNoPos({
-      x: (Math.random() - 0.5) * maxX,
-      y: (Math.random() - 0.5) * maxY,
+      top: Math.random() * (maxTop - minTop) + minTop,
+      left: Math.random() * (maxLeft - minLeft) + minLeft,
     });
   };
 
   return (
     <div className="valentine-mode-screen">
+      {/* 🔙 Optional Back Button */}
+      <button className="back-btn" onClick={goBack}>
+        ← Back
+      </button>
+
       {/* 💌 MESSAGE SEQUENCE */}
       {!showQuestion && (
         <div className="valentine-card">
@@ -228,9 +242,10 @@ const ValentineMode: React.FC = () => {
             <button
               className="valentine-no-btn"
               style={{
-                transform: `translate(${noPos.x}px, ${noPos.y}px)`,
+                top: `${noPos.top}%`,
+                left: `${noPos.left}%`,
               }}
-              onMouseEnter={moveNo}
+              onMouseMove={moveNo}
               onTouchStart={moveNo}
             >
               NO 😜
@@ -239,7 +254,7 @@ const ValentineMode: React.FC = () => {
         </div>
       )}
 
-      {/* 🎥 VIDEO WITH OVERLAY MESSAGE */}
+      {/* 🎥 MESSAGE + VIDEO */}
       {playVideo && !finalMessage && (
         <div className="valentine-video-section">
           <p className="valentine-video-text">
@@ -268,8 +283,6 @@ const ValentineMode: React.FC = () => {
     </div>
   );
 };
-
-
 
 
 
