@@ -32,6 +32,12 @@ type Page =
   | "HUG"
   | "KISS";
 
+  type Stage =
+  | "ANIMATION"
+  | "QUIZ"
+  | "SKIP_MESSAGE"
+  | "RESULT";
+
 const App: React.FC = () => {
   const [page, setPage] = useState<Page>("HOME");
 
