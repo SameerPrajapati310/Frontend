@@ -1,0 +1,211 @@
+/* ================= CONTAINER ================= */
+
+.valentine-mode-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px 24px;
+  text-align: center;
+
+  animation: screenFadeIn 1s ease forwards;
+}
+
+
+/* ================= CARD ================= */
+
+.valentine-card {
+  width: 100%;
+  max-width: 420px;
+
+  padding: 28px 26px;
+  margin-bottom: 20px;
+
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(14px);
+
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+  animation: cardEnter 0.6s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+/* ================= TEXT ================= */
+
+.valentine-text {
+  font-family: "Playfair Display", serif;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #7a1f3d;
+}
+
+/* ================= QUESTION ================= */
+
+.valentine-question {
+  font-family: "Playfair Display", serif;
+  font-size: 1.4rem;
+  margin-bottom: 18px;
+  color: #7a1120;
+}
+
+/* ================= OPTIONS ================= */
+
+.valentine-options {
+  position: relative;
+  width: 100%;
+  height: 160px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 26px;
+}
+
+/* ================= YES BUTTON ================= */
+
+.valentine-yes-btn {
+  padding: 12px 32px;
+  border-radius: 999px;
+  font-size: 1rem;
+
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #7a1120;
+
+  cursor: pointer;
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.valentine-yes-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* ================= NO BUTTON ================= */
+
+.valentine-no-btn {
+  position: absolute;
+  padding: 10px 26px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+
+  background: rgba(255, 255, 255, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #7a1f3d;
+
+  cursor: pointer;
+
+  transition: top 0.28s ease, left 0.28s ease;
+}
+
+/* ================= VIDEO ================= */
+
+
+
+.valentine-video {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.25);
+}
+
+/* ================= VIDEO MESSAGE ================= */
+
+
+/* ================= FINAL MESSAGE ================= */
+
+.valentine-final-text {
+  font-family: "Playfair Display", serif;
+  font-size: 1.6rem;
+  color: #7a1120;
+
+  animation: finalPop 0.8s ease forwards;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes screenFadeIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cardEnter {
+  from { opacity: 0; transform: scale(0.94) translateY(14px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-6px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@keyframes finalPop {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 480px) {
+  .valentine-text { font-size: 1.05rem; }
+  .valentine-final-text { font-size: 1.3rem; }
+  .valentine-video-text { font-size: 0.85rem; }
+}
+
+
+/* ================= VIDEO SECTION ================= */
+
+.valentine-video-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;        /* centers children */
+  gap: 20px;
+
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* ================= MESSAGE (CENTERED GLASS NOTE) ================= */
+
+.valentine-video-text {
+  font-family: "Playfair Display", serif;
+  font-size: 1rem;
+  line-height: 1.6;
+
+  color: #7a1120;
+  text-align: center;
+
+  padding: 16px 24px;
+  max-width: 90%;
+  width: fit-content;         /* shrink to text */
+  margin: 0 auto;             /* center block */
+
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+
+  /* HARD RULES */
+  position: static;
+  animation: none;
+  transform: none;
+}
+
+/* ================= VIDEO ================= */
+
+.valentine-video {
+  width: 100%;
+  display: block;
+
+  border-radius: 20px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.25);
+}
+
+

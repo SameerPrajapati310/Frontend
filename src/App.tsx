@@ -1,27 +1,29 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import "./App.css";
 import Lottie from "lottie-react";
 import roseAnimation from "./assets/rose.json";
 import coupleDinnerAnimation from "./assets/couple-dinner.json";
-import "./envelope.css"
-import "./side-bar.css"
+import "./envelope.css";
+import "./side-bar.css";
 import proposeAnimation from "./assets/Proposal.json";
-import "./p.css"
-import choco from "./assets/Black Chocolate Ribbon Heart Valentine Qixi.json"
-import "./choco.css"
-import { useEffect } from "react";
+import "./p.css";
+import choco from "./assets/Black Chocolate Ribbon Heart Valentine Qixi.json";
+import "./choco.css";
 import teddyAnimation from "./assets/Couple Bear Valentine.json";
-import "./teddy.css"
+import "./teddy.css";
 import sameerImg from "./public/1.jpeg";
 import mufasaImg from "./public/2.jpeg";
 import jackImg from "./public/3.jpeg";
-import "./promis.css"
-import "./hug.css"
-import "./kiss.css"
+import valentineVideo from "./video_f.mp4";
 
+import "./promis.css";
+import "./hug.css";
+import "./kiss.css";
+import "./day.css";
 
 type Page =
   | "HOME"
+  | "VALENTINE"
   | "ROSE"
   | "PROPOSE"
   | "CHOCOLATE"
@@ -29,12 +31,6 @@ type Page =
   | "PROMISE"
   | "HUG"
   | "KISS";
-
-  type Stage =
-  | "ANIMATION"
-  | "QUIZ"
-  | "SKIP_MESSAGE"
-  | "RESULT";
 
 const App: React.FC = () => {
   const [page, setPage] = useState<Page>("HOME");
@@ -52,7 +48,27 @@ const App: React.FC = () => {
   );
 
   return (
-    <div className={`page ${page === "HOME" ? "home-page-bg" : ""}`}>
+    <div
+      className={`page ${
+        page === "HOME"
+          ? "home-page-bg"
+          : page === "VALENTINE"
+          ? "valentine-premium-bg"
+          : ""
+      }`}
+
+      
+
+    >
+      {/* ✨ PREMIUM BACKGROUND ORBS (VALENTINE ONLY) */}
+      {page === "VALENTINE" && (
+        <>
+          <div className="love-orb one" />
+          <div className="love-orb two" />
+        </>
+      )}
+      
+
 
       {/* 🌹 Sidebar */}
       <div className="valentine-sidebar">
@@ -87,8 +103,10 @@ const App: React.FC = () => {
 
       {/* 🧩 MAIN CONTENT */}
       <div className="glass-card">
-        {page === "HOME" && <Home />}
-
+        {page === "HOME" && (
+          <Home enterValentine={() => setPage("VALENTINE")} />
+        )}
+        {page === "VALENTINE" && <ValentineMode />}
         {page === "ROSE" && <RoseDay goBack={() => setPage("HOME")} />}
         {page === "PROPOSE" && <ProposeDay goBack={() => setPage("HOME")} />}
         {page === "CHOCOLATE" && <ChocolateDay goBack={() => setPage("HOME")} />}
@@ -98,7 +116,7 @@ const App: React.FC = () => {
         {page === "KISS" && <KissDay goBack={() => setPage("HOME")} />}
       </div>
 
-      {/* 💌 FLOATING ENVELOPE (OUTSIDE GLASS CARD) */}
+      {/* 💌 ENVELOPE */}
       {page === "HOME" && <Envelope />}
     </div>
   );
@@ -106,9 +124,10 @@ const App: React.FC = () => {
 
 export default App;
 
+
 /* ================= HOME ================= */
 
-const Home = () => {
+const Home = ({ enterValentine }: { enterValentine: () => void }) => {
   return (
     <div className="landing-container landing-grid">
       <div className="landing-center">
@@ -123,10 +142,134 @@ const Home = () => {
         <p className="landing-subtitle">
           A week full of love, surprises & beautiful moments ✨
         </p>
+
+        {/* ❤️ ENTER BUTTON */}
+        <button className="enter-valentine-btn" onClick={enterValentine}>
+          💌 Enter Valentine Mode
+        </button>
       </div>
     </div>
   );
 };
+
+
+
+const messages = [
+  "I hope this Valentine week brought a smile to your heart and warmth to your days. 💖",
+  "I truly tried to make every moment special, just a small reflection of how special you are to me. 🌹",
+  "If there is anything that didn’t feel perfect, I promise to learn, grow, and make every Valentine that follows even more meaningful. ✨",
+  "Above all, I want you to know this — I love you. Your presence, your energy, and simply being you bring happiness and peace into my life. ❤️",
+];
+
+
+const ValentineMode: React.FC = () => {
+  const [step, setStep] = useState(0);
+  const [showQuestion, setShowQuestion] = useState(false);
+  const [playVideo, setPlayVideo] = useState(false);
+  const [finalMessage, setFinalMessage] = useState(false);
+
+  // 🔹 use transform-based position
+  const [noPos, setNoPos] = useState({ x: 0, y: 0 });
+
+  /* ================= MESSAGE SEQUENCE ================= */
+  useEffect(() => {
+    if (step < messages.length) {
+      const timer = setTimeout(() => {
+        setStep((prev) => prev + 1);
+      }, 6000);
+
+      return () => clearTimeout(timer);
+    } else {
+      setShowQuestion(true);
+    }
+  }, [step]);
+
+  /* ================= MOVE NO BUTTON (SMOOTH) ================= */
+  const moveNo = () => {
+    const maxX = 220; // px
+    const maxY = 140; // px
+
+    setNoPos({
+      x: (Math.random() - 0.5) * maxX,
+      y: (Math.random() - 0.5) * maxY,
+    });
+  };
+
+  return (
+    <div className="valentine-mode-screen">
+      {/* 💌 MESSAGE SEQUENCE */}
+      {!showQuestion && (
+        <div className="valentine-card">
+          <p className="valentine-text">{messages[step]}</p>
+        </div>
+      )}
+
+      {/* ❓ QUESTION */}
+      {showQuestion && !playVideo && (
+        <div className="valentine-card">
+          <h2 className="valentine-question">
+            Will you be my Valentine? 💘
+          </h2>
+
+          <div className="valentine-options">
+            <button
+              className="valentine-yes-btn"
+              onClick={() => setPlayVideo(true)}
+            >
+              YES 💖
+            </button>
+
+            <button
+              className="valentine-no-btn"
+              style={{
+                transform: `translate(${noPos.x}px, ${noPos.y}px)`,
+              }}
+              onMouseEnter={moveNo}
+              onTouchStart={moveNo}
+            >
+              NO 😜
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* 🎥 VIDEO WITH OVERLAY MESSAGE */}
+      {playVideo && !finalMessage && (
+        <div className="valentine-video-section">
+          <p className="valentine-video-text">
+            I don’t know how to express my feelings exactly, but if I could,
+            they might look something like this.
+          </p>
+
+          <video
+            className="valentine-video"
+            src={valentineVideo}
+            autoPlay
+            playsInline
+            onEnded={() => setFinalMessage(true)}
+          />
+        </div>
+      )}
+
+      {/* ❤️ FINAL MESSAGE */}
+      {finalMessage && (
+        <div className="valentine-card">
+          <p className="valentine-final-text">
+            I love you, Rashmi ❤️
+          </p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+
+
+
+
+
+
+
 
 /* ================= ENVELOPE ================= */
 

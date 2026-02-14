@@ -178,3 +178,180 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.enter-valentine-btn {
+  margin-top: 20px;
+  padding: 12px 32px;
+  font-size: 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+
+  /* Glass + romantic gradient */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 77, 109, 0.85),
+    rgba(255, 143, 163, 0.75)
+  );
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  color: white;
+
+  box-shadow:
+    0 12px 30px rgba(255, 77, 109, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    background 0.35s ease;
+}
+
+.enter-valentine-btn:hover {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow:
+    0 18px 40px rgba(239, 54, 88, 0.799),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.enter-valentine-btn:active {
+  transform: scale(1.04);
+  box-shadow:
+    0 10px 22px rgba(255, 77, 109, 0.45);
+}
+
+.enter-valentine-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.enter-valentine-btn:hover::after {
+  opacity: 1;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+
+.valentine-premium-bg {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+
+  background:
+    /* 🌸 gradients on top */
+    radial-gradient(
+      1200px 650px at 18% 22%,
+      rgba(255, 160, 190, 0.35),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 550px at 82% 28%,
+      rgba(255, 210, 220, 0.28),
+      transparent 55%
+    ),
+    radial-gradient(
+      700px 500px at 50% 80%,
+      rgba(255, 185, 160, 0.22),
+      transparent 65%
+    ),
+
+    /* 🖼️ IMAGE (BOTTOM LAYER) */
+    url("./assets/valentine-bg.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+.valentine-premium-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+
+  mix-blend-mode: soft-light;
+  animation: grainMove 10s steps(8) infinite;
+}
+
+
+@keyframes grainMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-10%, -10%); }
+}
+.love-orb {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 150, 170, 0.4),
+    transparent 70%
+  );
+  filter: blur(45px);
+  animation: floatOrb 16s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.love-orb.one {
+  top: 12%;
+  left: 8%;
+}
+
+.love-orb.two {
+  bottom: 14%;
+  right: 10%;
+  animation-delay: 6s;
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-40px); }
+}
+.glass-card {
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.08)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 22px;
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+
