@@ -213,9 +213,7 @@ const ValentineMode = ({ goBack }: ValentineModeProps) => {
   return (
     <div className="valentine-mode-screen">
       {/* 🔙 Optional Back Button */}
-      <button className="back-btn" onClick={goBack}>
-        ← Back
-      </button>
+
 
       {/* 💌 MESSAGE SEQUENCE */}
       {!showQuestion && (
@@ -223,6 +221,9 @@ const ValentineMode = ({ goBack }: ValentineModeProps) => {
           <p className="valentine-text">{messages[step]}</p>
         </div>
       )}
+      <button className="back-btn-valentine" onClick={goBack}>
+        ← Back
+      </button>
 
       {/* ❓ QUESTION */}
       {showQuestion && !playVideo && (

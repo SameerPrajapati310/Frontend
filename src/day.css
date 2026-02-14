@@ -158,6 +158,49 @@
   animation: finalPop 1s cubic-bezier(.22,1,.36,1) forwards;
 }
 
+.back-btn-valentine {
+  margin-top: 28px;
+  padding: 10px 26px;
+
+  font-family: "Playfair Display", serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+
+  color: #7a1120;
+  background: rgba(255, 255, 255, 0.35);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 16px rgba(122, 17, 32, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.back-btn-valentine:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 22px rgba(122, 17, 32, 0.25);
+}
+
+.back-btn-valentine:active {
+  transform: translateY(0);
+  box-shadow:
+    0 4px 10px rgba(122, 17, 32, 0.2);
+}
+
 
 /* ================= ANIMATIONS ================= */
 
